@@ -5,14 +5,14 @@ import time
 import sys
 
 
-#константы
+#constants
 WIDTH = 640
 HEIGHT = 640
 CELL = 32
 SQUARE = int(WIDTH/CELL)
 TIME = 100
 
-#цвета
+#colours
 C1 = (138, 138, 138)
 C2 = (132, 132, 132)
 RED = (140, 29, 4)
@@ -153,14 +153,13 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Snake")
 
-    #объекты игры
+    #objects of the game
     background = Background()
     apple = Apple()
     snake = Snake()
     collision = Colission()
     score = Score()
     
-    #основной алгоритм
     while True:
         background.paint( screen )   
         snake.paint( screen )
@@ -192,19 +191,19 @@ def main():
             snake.plus_body()
             score.increase()
         
-        #движение
+        # lose
         if snake.state != "STOP":
             snake.move_body()
             snake.move_head()
             
         if collision.between_snake_and_walls(snake):
-            # проигрыш
+            # lose
             snake.die()
             apple.spawn()
             score.reset()
         
         if collision.between_head_and_body(snake):
-            # проигрыш
+            # lose
             snake.die()
             apple.spawn()           
             score.reset()
